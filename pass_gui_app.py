@@ -27,6 +27,10 @@ def decrypt_password(encrypted_password, key):
 def save_password(website, username, encrypted_password):
     with open("passwords.txt", "a") as file:
         file.write(f"{website},{username},{encrypted_password.decode()}\n")
+        
+        
+def Generate_strong_password(Generated_pass=None):
+    return Generated_pass
 
 
 
@@ -61,5 +65,8 @@ password_entry.grid(row=2, column=1, padx=10, pady=5)
 save_button = tk.Button(root, text="Save Password", command=lambda: save_password(website_entry.get(), username_entry.get(), encrypt_password(password_entry.get(), generate_key())))
 save_button.grid(row=3, column=0, columnspan=2, pady=10)
 
+# Create Generate strong password button
+Generate_strong_password_button = tk.Button(root, text="Generate strong password", command=Generate_strong_password)
+Generate_strong_password_button.grid(row=4, column=0, columnspan=2, pady=10)
 # Run the main loop
 root.mainloop()
