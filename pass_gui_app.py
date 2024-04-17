@@ -1,14 +1,32 @@
 import tkinter as tk
 from tkinter import messagebox
+from cryptography.fernet import Fernet
 
+def generate_key():
+   return Fernet.generate_key()
 
-# Function to save password
-def save_password():
+# Encrypt the password
+def encrypt_password(password, key):
+        cipher_suite = Fernet(key)
+        encrypted_password = cipher_suite.encrypt(password.encode())
+        return encrypted_password
+
+# Decrypt the password
+def decrypt_password(encrypted_password, key):
+        cipher_suite = Fernet(key)
+        decrypted_password = cipher_suite.decrypt(encrypted_password).decode()
+        return decrypted_password
+# Save encrypted password to a file
+def save_password(website, username, encrypted_password):
+    key = generate_key()
     website = website_entry.get()
     username = username_entry.get()
     password = password_entry.get()
+    encrypted_password = encrypt_password(password, key)
+    with open("passwords.txt", "a") as file:
+        file.write(f"{website},{username},{encrypted_password.decode()}\n")
 
-    # Write code here to save the password securely
+
 
     messagebox.showinfo("Password Manager", f"Password for {website} saved successfully!")
 
