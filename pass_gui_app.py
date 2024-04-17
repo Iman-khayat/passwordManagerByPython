@@ -2,6 +2,13 @@ import tkinter as tk
 from tkinter import messagebox
 from cryptography.fernet import Fernet
 
+def init():
+    key = generate_key()
+    website = website_entry.get()
+    username = username_entry.get()
+    password = password_entry.get()
+    encrypted_password = encrypt_password(password, key)
+
 def generate_key():
    return Fernet.generate_key()
 
@@ -18,11 +25,6 @@ def decrypt_password(encrypted_password, key):
         return decrypted_password
 # Save encrypted password to a file
 def save_password(website, username, encrypted_password):
-    key = generate_key()
-    website = website_entry.get()
-    username = username_entry.get()
-    password = password_entry.get()
-    encrypted_password = encrypt_password(password, key)
     with open("passwords.txt", "a") as file:
         file.write(f"{website},{username},{encrypted_password.decode()}\n")
 
@@ -56,7 +58,7 @@ password_entry = tk.Entry(root, show="*")
 password_entry.grid(row=2, column=1, padx=10, pady=5)
 
 # Create save button
-save_button = tk.Button(root, text="Save Password", command=save_password)
+save_button = tk.Button(root, text="Save Password", command=lambda: save_password(website_entry.get(), username_entry.get(), encrypt_password(password_entry.get(), generate_key())))
 save_button.grid(row=3, column=0, columnspan=2, pady=10)
 
 # Run the main loop
