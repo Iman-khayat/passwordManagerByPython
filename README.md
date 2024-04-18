@@ -24,5 +24,6 @@ Unauthorized Access to Entered Passwords: By encrypting passwords using Fernet, 
 Strong Password Enforcement: While it offers strong password generation, users can still enter weak passwords.
 
 Data Breaches: If the file containing the encrypted passwords ("passwords.txt") is stolen, an attacker could potentially decrypt them if they have access to the encryption key and this is diffecult to git it.
+Encryption: It uses Fernet for password encryption, which is a good first step.
 
 
