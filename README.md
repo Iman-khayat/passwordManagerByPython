@@ -15,3 +15,14 @@ Open a command prompt or terminal window.
 Navigate to the directory where you saved the Python file (password_manager.py). You can use the cd command to change directories.
 Once in the correct directory, type the following command and press Enter:
 python password_manager.py
+
+What it Protects Against (Limited):
+
+Unauthorized Access to Entered Passwords: By encrypting passwords using Fernet, it protects against someone accessing the program and directly seeing the entered passwords.
+
+
+Strong Password Enforcement: While it offers strong password generation, users can still enter weak passwords.
+
+Data Breaches: If the file containing the encrypted passwords ("passwords.txt") is stolen, an attacker could potentially decrypt them if they have access to the encryption key and this is diffecult to git it.
+
+
